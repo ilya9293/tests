@@ -1,16 +1,26 @@
-export const App = () => {
+import { useRef } from 'react';
+
+const App = () => {
+  const scrollToFooter = useRef(null);
+
+  const handleClick = () => {
+    scrollToFooter.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <button type="button" className="button" onClick={handleClick}>
+        Down
+      </button>
+      <div className="middle">Middle</div>
+      <div ref={scrollToFooter} className="footer">
+        Footer
+      </div>
+    </>
   );
 };
+
+export default App;
